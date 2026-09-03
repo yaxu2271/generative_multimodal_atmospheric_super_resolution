@@ -97,6 +97,11 @@ Third-party code embedded in individual source files retains its original
 copyright and license notices. No project-wide license has yet been assigned;
 all rights not covered by those notices are reserved by the authors.
 
+## Acknowledgments
+
+We acknowledge support from DARPA Award: HR0011-26-3-E050, POC: Yannis
+Kevrekidis.
+
 ## Authors
 
 Yang Xu, Dibyajyoti Chakraborty, Haiwen Guan, Sen Wang, and Romit Maulik.
