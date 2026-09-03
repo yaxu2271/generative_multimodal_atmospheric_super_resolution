@@ -1,0 +1,364 @@
+{
+  "aircraft_candidates": [
+    {
+      "name": "a_old_a1",
+      "parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "role": "legacy 2020 A1 center"
+    },
+    {
+      "name": "a_2019_best",
+      "parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "role": "2019 Stage III-D aircraft all13 and target-group best"
+    },
+    {
+      "name": "a_near_tie",
+      "parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "role": "2019 near-tied interior aircraft candidate"
+    }
+  ],
+  "base_candidate_manifest": "/depot/rmaulik/data/yangxu/worktrees/observation_interface_independent_year_2019_stage3d_directional_20260725/configs/independent_year_2019/candidate_manifest_2019_v1.json",
+  "base_candidate_manifest_sha256": "7144000cc003403ce0dbc5c4460726864e3b2b7f37fc4bf6ea81ac471e96ec40",
+  "fixed_sampling": {
+    "ensemble": 16,
+    "seed": 17,
+    "steps": 50,
+    "support": "strict_conus"
+  },
+  "manifest_version": "stage4_joint3x3_manifest_v1",
+  "protocol_count": 9,
+  "protocols": [
+    {
+      "aircraft_candidate": {
+        "name": "a_old_a1",
+        "parameters": {
+          "gamma": 5e-06,
+          "lambda": 0.1,
+          "std": 0.0005
+        },
+        "role": "legacy 2020 A1 center"
+      },
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "protocol_id": "joint3x3__a_old_a1__s_old_m5",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_old_m5",
+        "parameters": {
+          "gamma": 1e-05,
+          "lambda": 0.2,
+          "std": 0.0005
+        },
+        "role": "legacy 2020 M5 center and 2019 all13 surface best"
+      },
+      "surface_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_old_a1",
+        "parameters": {
+          "gamma": 5e-06,
+          "lambda": 0.1,
+          "std": 0.0005
+        },
+        "role": "legacy 2020 A1 center"
+      },
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "protocol_id": "joint3x3__a_old_a1__s_compromise",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_compromise",
+        "parameters": {
+          "gamma": 4e-05,
+          "lambda": 0.4,
+          "std": 0.000125
+        },
+        "role": "2019 interior compromise between all13 and surface-targeted candidates"
+      },
+      "surface_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_old_a1",
+        "parameters": {
+          "gamma": 5e-06,
+          "lambda": 0.1,
+          "std": 0.0005
+        },
+        "role": "legacy 2020 A1 center"
+      },
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "protocol_id": "joint3x3__a_old_a1__s_aggressive",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_aggressive",
+        "parameters": {
+          "gamma": 8e-05,
+          "lambda": 0.8,
+          "std": 6.25e-05
+        },
+        "role": "2019 surface-targeted boundary best"
+      },
+      "surface_parameters": {
+        "gamma": 8e-05,
+        "lambda": 0.8,
+        "std": 6.25e-05
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_2019_best",
+        "parameters": {
+          "gamma": 2e-05,
+          "lambda": 0.4,
+          "std": 0.0005
+        },
+        "role": "2019 Stage III-D aircraft all13 and target-group best"
+      },
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "joint3x3__a_2019_best__s_old_m5",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_old_m5",
+        "parameters": {
+          "gamma": 1e-05,
+          "lambda": 0.2,
+          "std": 0.0005
+        },
+        "role": "legacy 2020 M5 center and 2019 all13 surface best"
+      },
+      "surface_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_2019_best",
+        "parameters": {
+          "gamma": 2e-05,
+          "lambda": 0.4,
+          "std": 0.0005
+        },
+        "role": "2019 Stage III-D aircraft all13 and target-group best"
+      },
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "joint3x3__a_2019_best__s_compromise",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_compromise",
+        "parameters": {
+          "gamma": 4e-05,
+          "lambda": 0.4,
+          "std": 0.000125
+        },
+        "role": "2019 interior compromise between all13 and surface-targeted candidates"
+      },
+      "surface_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_2019_best",
+        "parameters": {
+          "gamma": 2e-05,
+          "lambda": 0.4,
+          "std": 0.0005
+        },
+        "role": "2019 Stage III-D aircraft all13 and target-group best"
+      },
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "joint3x3__a_2019_best__s_aggressive",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_aggressive",
+        "parameters": {
+          "gamma": 8e-05,
+          "lambda": 0.8,
+          "std": 6.25e-05
+        },
+        "role": "2019 surface-targeted boundary best"
+      },
+      "surface_parameters": {
+        "gamma": 8e-05,
+        "lambda": 0.8,
+        "std": 6.25e-05
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_near_tie",
+        "parameters": {
+          "gamma": 1e-05,
+          "lambda": 0.2,
+          "std": 0.00025
+        },
+        "role": "2019 near-tied interior aircraft candidate"
+      },
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "protocol_id": "joint3x3__a_near_tie__s_old_m5",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_old_m5",
+        "parameters": {
+          "gamma": 1e-05,
+          "lambda": 0.2,
+          "std": 0.0005
+        },
+        "role": "legacy 2020 M5 center and 2019 all13 surface best"
+      },
+      "surface_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_near_tie",
+        "parameters": {
+          "gamma": 1e-05,
+          "lambda": 0.2,
+          "std": 0.00025
+        },
+        "role": "2019 near-tied interior aircraft candidate"
+      },
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "protocol_id": "joint3x3__a_near_tie__s_compromise",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_compromise",
+        "parameters": {
+          "gamma": 4e-05,
+          "lambda": 0.4,
+          "std": 0.000125
+        },
+        "role": "2019 interior compromise between all13 and surface-targeted candidates"
+      },
+      "surface_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      }
+    },
+    {
+      "aircraft_candidate": {
+        "name": "a_near_tie",
+        "parameters": {
+          "gamma": 1e-05,
+          "lambda": 0.2,
+          "std": 0.00025
+        },
+        "role": "2019 near-tied interior aircraft candidate"
+      },
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "protocol_id": "joint3x3__a_near_tie__s_aggressive",
+      "stage": "joint_interaction_3x3",
+      "surface_candidate": {
+        "name": "s_aggressive",
+        "parameters": {
+          "gamma": 8e-05,
+          "lambda": 0.8,
+          "std": 6.25e-05
+        },
+        "role": "2019 surface-targeted boundary best"
+      },
+      "surface_parameters": {
+        "gamma": 8e-05,
+        "lambda": 0.8,
+        "std": 6.25e-05
+      }
+    }
+  ],
+  "purpose": "Stage IV joint interaction over three aircraft and three surface-station numerical-calibration candidates. Selection is intended to use strict-CONUS all-13 improvement on the frozen 2019 development cases.",
+  "selection_artifact": "/depot/rmaulik/data/yangxu/worktrees/observation_interface_independent_year_2019_stage3d_directional_20260725/configs/independent_year_2019/stage3_selection_keep015_v1.json",
+  "selection_artifact_sha256": "987e35958b0404b04106287443d0ed75fd94b7cceb83f19cb17a6a49dfc769e7",
+  "selection_metric": "strict_conus_all13_mean_rmse_percent_change_vs_radiosonde_only",
+  "surface_candidates": [
+    {
+      "name": "s_old_m5",
+      "parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "role": "legacy 2020 M5 center and 2019 all13 surface best"
+    },
+    {
+      "name": "s_compromise",
+      "parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "role": "2019 interior compromise between all13 and surface-targeted candidates"
+    },
+    {
+      "name": "s_aggressive",
+      "parameters": {
+        "gamma": 8e-05,
+        "lambda": 0.8,
+        "std": 6.25e-05
+      },
+      "role": "2019 surface-targeted boundary best"
+    }
+  ]
+}

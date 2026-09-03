@@ -1,0 +1,23 @@
+defaults:
+  - defaults
+
+dataset:
+  _target_: igra_gen.data.era5_sr.ERA5SR
+  root: "."
+  split: train
+  conditions: 1
+  variables: 
+    - 2m_temperature
+    - 10m_u_component_of_wind
+    - 10m_v_component_of_wind
+    - geopotential_500
+    - geopotential_850
+    - u_component_of_wind_500
+    - u_component_of_wind_850
+    - v_component_of_wind_500
+    - v_component_of_wind_850
+    - temperature_500
+    - temperature_850
+    - specific_humidity_500
+    - specific_humidity_850
+    - land_sea_mask

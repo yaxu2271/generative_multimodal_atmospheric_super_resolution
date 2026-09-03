@@ -1,0 +1,35 @@
+{
+  "artifact_version": "stage3_selection_keep015_v1",
+  "created_utc": "2026-07-23T18:10:56Z",
+  "development_year": 2019,
+  "development_timestamps": "Inherited from candidate_manifest_2019_v1.json",
+  "scientific_role": "Structural-interface freeze consumed by separate numerical calibration",
+  "aircraft": {
+    "source_policy_name": "legacy_keep015",
+    "source_codes": [
+      0,
+      1,
+      5
+    ],
+    "pressure_window": "around25",
+    "operator": "v4_equal_cell"
+  },
+  "surface_station": {
+    "operator": "v4_equal_cell"
+  },
+  "selection_basis": {
+    "structural_report": "/depot/rmaulik/data/yangxu/reports/2026/07232026report/20260723__2019_structural_selection_strat24_analysis",
+    "aircraft_note": "The keep {0,1,5} candidate is paired-month bootstrap-tied with the raw 2019 winner; source 3 contributes zero around25 strict-CONUS records and source 6 contributes only 34 temperature-plus-wind report records. The author selected the simpler keep {0,1,5} policy before numerical calibration.",
+    "surface_station_note": "V4 equal-cell is the unique raw and paired-month-bootstrap winner among the 2019 surface-station structural candidates.",
+    "disclosure": "This parsimonious keep {0,1,5} choice differs from the deterministic residual-tie preference in SELECTION_RULE_2019.md, which would retain broader audited coverage. The change is frozen here before numerical or joint calibration and does not consult 2020 posterior rankings."
+  },
+  "allowed_stages": [
+    "aircraft_numerical_calibration",
+    "metar_numerical_calibration"
+  ],
+  "blocked_stages": [
+    "joint_interaction",
+    "2020_evaluation",
+    "2025_transfer"
+  ]
+}

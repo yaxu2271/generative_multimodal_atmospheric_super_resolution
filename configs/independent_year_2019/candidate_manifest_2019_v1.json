@@ -1,0 +1,1432 @@
+{
+  "aircraft_pressure_windows": {
+    "around25": {
+      "500": [
+        475.0,
+        525.0
+      ],
+      "850": [
+        825.0,
+        875.0
+      ]
+    },
+    "around5": {
+      "500": [
+        495.0,
+        505.0
+      ],
+      "850": [
+        845.0,
+        855.0
+      ]
+    }
+  },
+  "aircraft_source_policies": {
+    "all_qc": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "exclude_tamdar": [
+      0,
+      1,
+      3,
+      5,
+      6
+    ],
+    "legacy_keep015": [
+      0,
+      1,
+      5
+    ]
+  },
+  "candidate_counts": {
+    "aircraft_numerical_calibration": 27,
+    "aircraft_structure": 24,
+    "baseline": 1,
+    "joint_interaction": 9,
+    "metar_numerical_calibration": 27,
+    "metar_structure": 3,
+    "total": 91
+  },
+  "created_utc": "2026-07-21T17:26:33.504100+00:00",
+  "development_timestamps": [
+    "2019-01-01T00:00:00Z",
+    "2019-01-15T00:00:00Z",
+    "2019-02-01T00:00:00Z",
+    "2019-02-15T00:00:00Z",
+    "2019-03-01T00:00:00Z",
+    "2019-03-15T00:00:00Z",
+    "2019-04-01T00:00:00Z",
+    "2019-04-15T00:00:00Z",
+    "2019-05-01T00:00:00Z",
+    "2019-05-15T00:00:00Z",
+    "2019-06-01T00:00:00Z",
+    "2019-06-15T00:00:00Z",
+    "2019-07-01T00:00:00Z",
+    "2019-07-15T00:00:00Z",
+    "2019-08-01T00:00:00Z",
+    "2019-08-15T00:00:00Z",
+    "2019-09-01T00:00:00Z",
+    "2019-09-15T00:00:00Z",
+    "2019-10-01T00:00:00Z",
+    "2019-10-15T00:00:00Z",
+    "2019-11-01T00:00:00Z",
+    "2019-11-15T00:00:00Z",
+    "2019-12-01T00:00:00Z",
+    "2019-12-15T00:00:00Z"
+  ],
+  "fixed_igra": {
+    "gamma": 2e-06,
+    "lambda": 1.0,
+    "operator": "predecessor_pointwise_bilinear",
+    "std": 0.0005
+  },
+  "fixed_sampling": {
+    "ensemble": 16,
+    "seed": 17,
+    "steps": 50,
+    "support": "strict_conus"
+  },
+  "manifest_version": "candidate_manifest_2019_v1",
+  "protocols": [
+    {
+      "modalities": [
+        "igra"
+      ],
+      "protocol_id": "baseline_igra_only",
+      "stage": "baseline"
+    },
+    {
+      "aircraft_operator": "v1_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around5__v1_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v2_cell_balanced_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around5__v2_cell_balanced_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4_equal_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around5__v4_equal_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4c_distance_weighted_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around5__v4c_distance_weighted_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v1_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around25__v1_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v2_cell_balanced_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around25__v2_cell_balanced_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4_equal_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around25__v4_equal_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4c_distance_weighted_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "all_qc",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__all_qc__around25__v4c_distance_weighted_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v1_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around5__v1_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v2_cell_balanced_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around5__v2_cell_balanced_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4_equal_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around5__v4_equal_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4c_distance_weighted_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around5__v4c_distance_weighted_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v1_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around25__v1_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v2_cell_balanced_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around25__v2_cell_balanced_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4_equal_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around25__v4_equal_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4c_distance_weighted_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "exclude_tamdar",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__exclude_tamdar__around25__v4c_distance_weighted_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v1_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around5__v1_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v2_cell_balanced_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around5__v2_cell_balanced_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4_equal_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around5__v4_equal_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4c_distance_weighted_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around5",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around5__v4c_distance_weighted_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v1_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around25__v1_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v2_cell_balanced_pointwise",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around25__v2_cell_balanced_pointwise",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4_equal_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around25__v4_equal_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "aircraft_operator": "v4c_distance_weighted_cell",
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "aircraft_pressure_window": "around25",
+      "aircraft_source_policy": "legacy_keep015",
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_struct__legacy_keep015__around25__v4c_distance_weighted_cell",
+      "stage": "aircraft_structure"
+    },
+    {
+      "metar_operator": "v1_pointwise",
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_struct__v1_pointwise",
+      "stage": "metar_structure"
+    },
+    {
+      "metar_operator": "v2_cell_balanced_pointwise",
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_struct__v2_cell_balanced_pointwise",
+      "stage": "metar_structure"
+    },
+    {
+      "metar_operator": "v4_equal_cell",
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_struct__v4_equal_cell",
+      "stage": "metar_structure"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.00025__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.00025__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.00025__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.0005__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.0005__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.0005__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.001__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.001__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.05__std0.001__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.00025__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.00025__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.00025__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.0005__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.0005__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.0005__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.001__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.001__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.1__std0.001__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.00025__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.00025__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.00025__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.0005__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.0005__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.0005__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.001__gamma2e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.001__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "aircraft"
+      ],
+      "protocol_id": "aircraft_cal__lambda0.2__std0.001__gamma1e-05",
+      "stage": "aircraft_numerical_calibration",
+      "structural_settings": "selected_by_aircraft_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.00025__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.00025__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.00025__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.0005__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.0005__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.0005__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.001__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.001__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.1__std0.001__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.00025__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.00025__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.00025__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.0005__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.0005__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.0005__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.001__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.001__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.2__std0.001__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.00025__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.00025__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.00025__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.0005__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.0005__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.0005__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.001__gamma5e-06",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.001__gamma1e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "modalities": [
+        "igra",
+        "metar"
+      ],
+      "protocol_id": "metar_cal__lambda0.4__std0.001__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "structural_settings": "selected_by_metar_structure_stage"
+    },
+    {
+      "aircraft_lambda_multiplier": 0.5,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 0.5,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft0.5x__metar0.5x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 0.5,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 1.0,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft0.5x__metar1x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 0.5,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 2.0,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft0.5x__metar2x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 1.0,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 0.5,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft1x__metar0.5x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 1.0,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 1.0,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft1x__metar1x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 1.0,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 2.0,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft1x__metar2x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 2.0,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 0.5,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft2x__metar0.5x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 2.0,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 1.0,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft2x__metar1x",
+      "stage": "joint_interaction"
+    },
+    {
+      "aircraft_lambda_multiplier": 2.0,
+      "base_settings": "separately_selected_2019_aircraft_and_metar_interfaces",
+      "metar_lambda_multiplier": 2.0,
+      "modalities": [
+        "igra",
+        "aircraft",
+        "metar"
+      ],
+      "protocol_id": "interaction__aircraft2x__metar2x",
+      "stage": "joint_interaction"
+    }
+  ],
+  "scientific_split": {
+    "development": 2019,
+    "future_transfer_not_started": 2025,
+    "primary_evaluation": 2020
+  },
+  "selection_rule": {
+    "forbidden": "2020 outcomes may not select candidates or break ties",
+    "interaction_tie": "minimum log-distance to (1x,1x), then lower total lambda multiplier",
+    "numerical_tie": "minimum log-distance to prespecified center, then weaker guidance in order lower gamma, lower lambda, larger std",
+    "operator_tie_order": [
+      "v4_equal_cell",
+      "v2_cell_balanced_pointwise",
+      "v1_pointwise",
+      "v4c_distance_weighted_cell"
+    ],
+    "paired_uncertainty": "10000 paired bootstrap replicates over 12 month blocks, each block containing the prespecified 1st and 15th; seed=1701",
+    "pressure_window_tie_order": [
+      "around5",
+      "around25"
+    ],
+    "primary": "mean over 24 timestamps and 13 variables of 100*(RMSE_candidate-RMSE_IGRA)/RMSE_IGRA",
+    "secondary": {
+      "aircraft": "constrained6",
+      "joint": "report constrained6 and surface3; use all13 for rank",
+      "metar": "surface3"
+    },
+    "source_policy_tie_order": [
+      "all_qc",
+      "exclude_tamdar",
+      "legacy_keep015"
+    ],
+    "statistical_tie": "95% paired-bootstrap interval for the candidate difference contains zero"
+  },
+  "source_policy_rationale": {
+    "all_qc": "All source codes present in the complete 2019 point/acars audit after product QCR and physical checks.",
+    "exclude_tamdar": "Documentation-motivated broad policy excluding 2019 TAMDAR/AirDat code 4 while retaining other audited operational sources.",
+    "legacy_keep015": "Disclosed legacy candidate inherited from the exploratory 2020 study; it receives no ranking privilege."
+  }
+}

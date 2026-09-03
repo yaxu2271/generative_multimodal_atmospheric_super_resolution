@@ -1,0 +1,741 @@
+{
+  "base_candidate_manifest": "/depot/rmaulik/data/yangxu/worktrees/observation_interface_independent_year_2019_stage3c_cartesian4_20260724/configs/independent_year_2019/candidate_manifest_2019_v1.json",
+  "base_candidate_manifest_sha256": "7144000cc003403ce0dbc5c4460726864e3b2b7f37fc4bf6ea81ac471e96ec40",
+  "fixed_sampling": {
+    "ensemble": 16,
+    "seed": 17,
+    "steps": 50,
+    "support": "strict_conus"
+  },
+  "grids": {
+    "aircraft": {
+      "gamma": [
+        2e-06,
+        5e-06,
+        1e-05,
+        2e-05
+      ],
+      "lambda": [
+        0.05,
+        0.1,
+        0.2,
+        0.4
+      ],
+      "parameter_key": "aircraft_parameters",
+      "stage": "aircraft_numerical_calibration",
+      "std": [
+        0.000125,
+        0.00025,
+        0.0005,
+        0.001
+      ]
+    },
+    "surface_station": {
+      "gamma": [
+        5e-06,
+        1e-05,
+        2e-05,
+        4e-05
+      ],
+      "lambda": [
+        0.05,
+        0.1,
+        0.2,
+        0.4
+      ],
+      "parameter_key": "metar_parameters",
+      "stage": "metar_numerical_calibration",
+      "std": [
+        0.000125,
+        0.00025,
+        0.0005,
+        0.001
+      ]
+    }
+  },
+  "manifest_version": "stage3c_directional_cartesian4_manifest_v1",
+  "new_protocol_count": 74,
+  "protocols": [
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.000125__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.000125__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.000125__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.000125__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.00025__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.0005__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.05__std0.001__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.000125__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.000125__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.000125__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.000125__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.00025__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.0005__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.1__std0.001__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.000125__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.000125__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.000125__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.000125__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.00025__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.0005__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.2__std0.001__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.000125__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.000125__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.000125__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.000125__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.00025__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.00025__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.00025__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.00025__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.0005__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.0005__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.0005__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.0005__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-06,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.001__gamma2e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.001__gamma5e-06",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.001__gamma1e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "aircraft_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "protocol_id": "aircraft_cart4__lambda0.4__std0.001__gamma2e-05",
+      "stage": "aircraft_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.000125__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.000125__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.000125__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.05,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.000125__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.00025__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.00025__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.00025__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.05,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.00025__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.0005__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.0005__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.0005__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.05,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.0005__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.001__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.001__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.001__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.05,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.05__std0.001__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.000125__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.000125__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.000125__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.1,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.000125__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.1,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.00025__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.1,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.0005__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.1,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.1__std0.001__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.000125__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.000125__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.000125__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.2,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.000125__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.2,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.00025__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.2,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.0005__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.2,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.2__std0.001__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 5e-06,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.000125__gamma5e-06",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 1e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.000125__gamma1e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 2e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.000125__gamma2e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.000125
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.000125__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.00025
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.00025__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.0005
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.0005__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    },
+    {
+      "metar_parameters": {
+        "gamma": 4e-05,
+        "lambda": 0.4,
+        "std": 0.001
+      },
+      "protocol_id": "surface_cart4__lambda0.4__std0.001__gamma4e-05",
+      "stage": "metar_numerical_calibration"
+    }
+  ],
+  "purpose": "Missing full-quality points required to complete one directional 4 x 4 x 4 numerical-calibration cube per modality using only 2019.",
+  "reuse_accounting": {
+    "aircraft": {
+      "full_grid_count": 64,
+      "new_stage3c_count": 37,
+      "reused_stage3_count": 27
+    },
+    "surface_station": {
+      "full_grid_count": 64,
+      "new_stage3c_count": 37,
+      "reused_stage3_count": 27
+    }
+  },
+  "selection_artifact": "/depot/rmaulik/data/yangxu/worktrees/observation_interface_independent_year_2019_stage3c_cartesian4_20260724/configs/independent_year_2019/stage3_selection_keep015_v1.json",
+  "selection_artifact_sha256": "987e35958b0404b04106287443d0ed75fd94b7cceb83f19cb17a6a49dfc769e7"
+}

@@ -1,0 +1,41 @@
+{
+  "source_commit": "5875fe981a77a00a3d1392d24f84b8285cf48a41",
+  "development_year": 2019,
+  "development_cases": 24,
+  "selected_parameters": {
+    "igra_lambda": 1.0,
+    "igra_std": 0.0005,
+    "igra_gamma": 0.000002,
+    "aircraft_lambda": 0.4,
+    "aircraft_std": 0.0005,
+    "aircraft_gamma": 0.00002,
+    "surface_lambda": 0.4,
+    "surface_std": 0.000125,
+    "surface_gamma": 0.00004
+  },
+  "aircraft_interface": {
+    "reporting_systems": [
+      "ACARS direct",
+      "MDCRS/ARINC",
+      "Canadian AMDAR"
+    ],
+    "madis_data_source_codes": [0, 1, 5],
+    "pressure_matching_hpa": 25,
+    "residual_counting": "equal-cell mean"
+  },
+  "surface_interface": {
+    "product": "MADIS METAR",
+    "variables": [
+      "2m_temperature",
+      "10m_u_component_of_wind",
+      "10m_v_component_of_wind"
+    ],
+    "residual_counting": "equal-cell mean"
+  },
+  "spatial_domain": {
+    "name": "CONUS domain",
+    "latitude_degrees_north": [24.0, 50.0],
+    "longitude_degrees_east": [-125.0, -66.0]
+  }
+}
+

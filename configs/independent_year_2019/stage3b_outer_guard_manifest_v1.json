@@ -1,0 +1,91 @@
+{
+  "manifest_version": "stage3b_outer_guard_manifest_v1",
+  "created_utc": "2026-07-24T00:00:00Z",
+  "purpose": "Prespecified one-axis outer guards around the provisional 2019 Stage III selections. This is a 2019-only grid-boundary audit and does not use 2020 rankings.",
+  "base_candidate_manifest": "configs/independent_year_2019/candidate_manifest_2019_v1.json",
+  "base_candidate_manifest_sha256": "7144000cc003403ce0dbc5c4460726864e3b2b7f37fc4bf6ea81ac471e96ec40",
+  "selection_artifact": "configs/independent_year_2019/stage3_selection_keep015_v1.json",
+  "selection_artifact_sha256": "987e35958b0404b04106287443d0ed75fd94b7cceb83f19cb17a6a49dfc769e7",
+  "fixed_sampling": {
+    "ensemble": 16,
+    "steps": 50,
+    "seed": 17,
+    "support": "strict_conus",
+    "development_cases": 24
+  },
+  "design": {
+    "rule": "Vary one numerical parameter at a time to a value outside the completed Stage III grid while holding the other two at the current 2019 provisional selection.",
+    "aircraft_center": {
+      "lambda": 0.1,
+      "std": 0.00025,
+      "gamma": 0.000005
+    },
+    "surface_station_center": {
+      "lambda": 0.2,
+      "std": 0.00025,
+      "gamma": 0.00002
+    }
+  },
+  "protocols": [
+    {
+      "protocol_id": "aircraft_guard__lambda0.025__std0.00025__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "aircraft_parameters": {"lambda": 0.025, "std": 0.00025, "gamma": 0.000005}
+    },
+    {
+      "protocol_id": "aircraft_guard__lambda0.4__std0.00025__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "aircraft_parameters": {"lambda": 0.4, "std": 0.00025, "gamma": 0.000005}
+    },
+    {
+      "protocol_id": "aircraft_guard__lambda0.1__std0.000125__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "aircraft_parameters": {"lambda": 0.1, "std": 0.000125, "gamma": 0.000005}
+    },
+    {
+      "protocol_id": "aircraft_guard__lambda0.1__std0.002__gamma5e-06",
+      "stage": "aircraft_numerical_calibration",
+      "aircraft_parameters": {"lambda": 0.1, "std": 0.002, "gamma": 0.000005}
+    },
+    {
+      "protocol_id": "aircraft_guard__lambda0.1__std0.00025__gamma1e-06",
+      "stage": "aircraft_numerical_calibration",
+      "aircraft_parameters": {"lambda": 0.1, "std": 0.00025, "gamma": 0.000001}
+    },
+    {
+      "protocol_id": "aircraft_guard__lambda0.1__std0.00025__gamma2e-05",
+      "stage": "aircraft_numerical_calibration",
+      "aircraft_parameters": {"lambda": 0.1, "std": 0.00025, "gamma": 0.00002}
+    },
+    {
+      "protocol_id": "surface_guard__lambda0.05__std0.00025__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "metar_parameters": {"lambda": 0.05, "std": 0.00025, "gamma": 0.00002}
+    },
+    {
+      "protocol_id": "surface_guard__lambda0.8__std0.00025__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "metar_parameters": {"lambda": 0.8, "std": 0.00025, "gamma": 0.00002}
+    },
+    {
+      "protocol_id": "surface_guard__lambda0.2__std0.000125__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "metar_parameters": {"lambda": 0.2, "std": 0.000125, "gamma": 0.00002}
+    },
+    {
+      "protocol_id": "surface_guard__lambda0.2__std0.002__gamma2e-05",
+      "stage": "metar_numerical_calibration",
+      "metar_parameters": {"lambda": 0.2, "std": 0.002, "gamma": 0.00002}
+    },
+    {
+      "protocol_id": "surface_guard__lambda0.2__std0.00025__gamma2.5e-06",
+      "stage": "metar_numerical_calibration",
+      "metar_parameters": {"lambda": 0.2, "std": 0.00025, "gamma": 0.0000025}
+    },
+    {
+      "protocol_id": "surface_guard__lambda0.2__std0.00025__gamma4e-05",
+      "stage": "metar_numerical_calibration",
+      "metar_parameters": {"lambda": 0.2, "std": 0.00025, "gamma": 0.00004}
+    }
+  ]
+}
