@@ -134,7 +134,7 @@ def load_timesteps() -> list[int]:
     return timesteps
 
 
-def load_grid_masks() -> dict[str, np.ndarray]:
+def load_grid_supports() -> dict[str, tuple[np.ndarray, np.ndarray]]:
     lats = np.load(ERA5_ROOT / "lat.npy").astype(float)
     lons = np.load(ERA5_ROOT / "lon.npy").astype(float)
     lon180 = ((lons + 180.0) % 360.0) - 180.0
@@ -143,11 +143,13 @@ def load_grid_masks() -> dict[str, np.ndarray]:
         & ((lon180 >= -125.0) & (lon180 <= -66.0))[None, :]
     )
     global_mask = np.ones((len(lats), len(lons)), dtype=bool)
-    return {
+    area_weights = np.cos(np.deg2rad(lats))[:, None] * np.ones((1, len(lons)))
+    masks = {
         "strict_conus": strict,
         "global": global_mask,
         "global_excluding_strict_conus": global_mask & ~strict,
     }
+    return {name: (mask, area_weights) for name, mask in masks.items()}
 
 
 def load_norm() -> tuple[np.ndarray, np.ndarray]:
@@ -171,9 +173,19 @@ def load_sample_mean(path: Path, mean: np.ndarray, std: np.ndarray) -> np.ndarra
     return (np.asarray(arr, dtype=np.float32).mean(axis=0) * std + mean).astype(np.float32)
 
 
-def rmse(field: np.ndarray, truth: np.ndarray, mask: np.ndarray) -> np.ndarray:
+def rmse(
+    field: np.ndarray,
+    truth: np.ndarray,
+    mask: np.ndarray,
+    area_weights: np.ndarray,
+) -> np.ndarray:
     diff = field[:, mask] - truth[:, mask]
-    return np.sqrt(np.nanmean(diff * diff, axis=1))
+    squared = np.asarray(diff * diff, dtype=np.float64)
+    weights = area_weights[mask]
+    finite = np.isfinite(squared)
+    numerator = np.nansum(squared * weights[None, :], axis=1)
+    denominator = np.sum(finite * weights[None, :], axis=1)
+    return np.sqrt(numerator / denominator)
 
 
 def datetime_utc(timestep: int) -> pd.Timestamp:
@@ -200,7 +212,7 @@ def sample_path(root: Path, timestep: int) -> Path:
 
 def evaluate() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     timesteps = load_timesteps()
-    masks = load_grid_masks()
+    supports = load_grid_supports()
     mean, std = load_norm()
 
     protocol_paths = {p.label: sample_paths(p) for p in PROTOCOLS}
@@ -217,12 +229,15 @@ def evaluate() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
         truth = load_truth(timestep)
         baseline_path = sample_path(BASELINE_ROOT, timestep)
         baseline = load_sample_mean(baseline_path, mean, std)
-        baseline_rmse = {region: rmse(baseline, truth, mask) for region, mask in masks.items()}
+        baseline_rmse = {
+            region: rmse(baseline, truth, mask, weights)
+            for region, (mask, weights) in supports.items()
+        }
         dt = datetime_utc(timestep)
         for protocol in PROTOCOLS:
             pred = load_sample_mean(protocol_paths[protocol.label][timestep], mean, std)
-            for region, mask in masks.items():
-                method = rmse(pred, truth, mask)
+            for region, (mask, weights) in supports.items():
+                method = rmse(pred, truth, mask, weights)
                 base = baseline_rmse[region]
                 pct_delta = 100.0 * (method - base) / base
                 for i, var in enumerate(VARIABLES):

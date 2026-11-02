@@ -56,7 +56,9 @@ def save(figure: plt.Figure, stem: str) -> None:
 
 
 def plot_probabilistic_summary() -> None:
-    summary = pd.read_csv(PROBABILISTIC_TABLES / "probabilistic_group_summary.csv")
+    summary = pd.read_csv(
+        PROBABILISTIC_TABLES / "area_weighted_probabilistic_group_summary.csv"
+    )
     strict = summary[summary["region"].eq("strict_conus")].set_index(
         "evaluation_group"
     )
@@ -118,9 +120,11 @@ def plot_probabilistic_summary() -> None:
 
 def plot_dispersion_summary() -> None:
     spread = pd.read_csv(
-        DISPERSION_TABLES / "spread_skill_by_group.csv"
+        DISPERSION_TABLES / "area_weighted_spread_skill_coverage_by_group.csv"
     )
-    ranks = pd.read_csv(DISPERSION_TABLES / "rank_histogram_by_group.csv")
+    ranks = pd.read_csv(
+        DISPERSION_TABLES / "area_weighted_rank_histogram_by_group.csv"
+    )
     labels = [GROUP_LABELS[group] for group in GROUP_ORDER]
     x = np.arange(len(GROUP_ORDER))
     width = 0.34

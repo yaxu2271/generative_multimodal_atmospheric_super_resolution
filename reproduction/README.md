@@ -7,7 +7,7 @@ users to provide all data and model paths explicitly.
 ## Files
 
 - `run_2020_evaluation.py`: annual R, R+A, R+S, and R+A+S posterior-sampling
-  runs.
+  runs, plus the fixed-parameter Prior, A, S, and A+S removal sensitivity.
 - `run_2020_holdout.py`: 24-case aircraft or surface-station held-out-
   conditioning posterior-sampling run.
 - `create_2020_holdout_split.py`: reproducible 80/20 cell-based split for the
@@ -53,6 +53,12 @@ Use `--configuration R`, `R+A`, or `R+S` for the matched comparisons. Run
 interface. The wrapper uses `config/atmospheric_prior_13var.yaml` by default;
 `--hydra-config` can override it when another compatible resolved
 configuration is required.
+
+For the 24-case no-R removal sensitivity, pass
+`reproduction/manifests/holdout_timesteps_2020.json` through `--timesteps` and
+run the same wrapper with `--configuration Prior`, `A`, `S`, or `A+S`. The A
+and S likelihood parameters remain the values selected with R present; these
+runs are therefore removal ablations, not separately optimized no-R methods.
 
 ## Creating the held-out splits
 

@@ -94,13 +94,15 @@ def load_truth(timestep: int) -> np.ndarray:
         )
 
 
-def masks() -> dict[str, np.ndarray]:
+def supports() -> dict[str, tuple[np.ndarray, np.ndarray]]:
     lat = np.load(ERA5_ROOT / "lat.npy").astype(float)
     lon = np.load(ERA5_ROOT / "lon.npy").astype(float)
     lon = ((lon + 180.0) % 360.0) - 180.0
     conus = ((lat >= 24.0) & (lat <= 50.0))[:, None] & ((lon >= -125.0) & (lon <= -66.0))[None, :]
     globe = np.ones((len(lat), len(lon)), dtype=bool)
-    return {"strict_conus": conus, "global": globe, "outside_conus": globe & ~conus}
+    area = np.cos(np.deg2rad(lat))[:, None] * np.ones((1, len(lon)))
+    masks = {"strict_conus": conus, "global": globe, "outside_conus": globe & ~conus}
+    return {name: (mask, area) for name, mask in masks.items()}
 
 
 def sample_path(protocol: str, timestep: int) -> Path:
@@ -131,8 +133,23 @@ def safe_corr(x: np.ndarray, y: np.ndarray) -> float:
     return float(np.corrcoef(x[good], y[good])[0, 1])
 
 
-def crps_pair(samples: np.ndarray, truth: np.ndarray) -> tuple[float, float]:
-    """Return empirical and fair finite-ensemble CRPS, averaged over points."""
+def weighted_mean(values: np.ndarray, weights: np.ndarray) -> float:
+    values = np.asarray(values, dtype=np.float64)
+    weights = np.asarray(weights, dtype=np.float64)
+    finite = np.isfinite(values)
+    return float(np.nansum(values * weights) / np.sum(weights[finite]))
+
+
+def weighted_rmse(values: np.ndarray, weights: np.ndarray) -> float:
+    return float(np.sqrt(weighted_mean(np.asarray(values) ** 2, weights)))
+
+
+def crps_pair(
+    samples: np.ndarray,
+    truth: np.ndarray,
+    weights: np.ndarray,
+) -> tuple[float, float]:
+    """Return cosine-latitude-weighted empirical and fair finite-ensemble CRPS."""
     samples = samples.astype(np.float64, copy=False)
     truth = truth.astype(np.float64, copy=False)
     member_count = samples.shape[0]
@@ -142,12 +159,12 @@ def crps_pair(samples: np.ndarray, truth: np.ndarray) -> tuple[float, float]:
     pair_sum = np.sum(coefficient * ordered, axis=0)
     empirical = first - pair_sum / (member_count * member_count)
     fair = first - pair_sum / (member_count * (member_count - 1))
-    return float(np.mean(empirical)), float(np.mean(fair))
+    return weighted_mean(empirical, weights), weighted_mean(fair, weights)
 
 
 def evaluate() -> pd.DataFrame:
     mean, std = load_normalization()
-    region_masks = masks()
+    region_supports = supports()
     rows: list[dict[str, object]] = []
     timesteps = load_timesteps()
     for count, timestep in enumerate(timesteps, start=1):
@@ -159,14 +176,15 @@ def evaluate() -> pd.DataFrame:
             ensemble_mean = ensemble.mean(axis=0)
             ensemble_std = ensemble.std(axis=0, ddof=1)
             q05, q95 = np.quantile(ensemble, [0.05, 0.95], axis=0, method="linear")
-            for region, mask in region_masks.items():
+            for region, (mask, area) in region_supports.items():
+                weights = area[mask]
                 for channel, variable in enumerate(VARIABLES):
                     y = truth[channel][mask]
                     mu = ensemble_mean[channel][mask]
                     sigma = ensemble_std[channel][mask]
                     samples = ensemble[:, channel][:, mask]
                     error = mu - y
-                    crps, fair_crps = crps_pair(samples, y)
+                    crps, fair_crps = crps_pair(samples, y, weights)
                     rows.append(
                         {
                             "protocol": protocol,
@@ -180,10 +198,10 @@ def evaluate() -> pd.DataFrame:
                             "variable_short": SHORT[variable],
                             "is_surface_targeted": variable in SURFACE,
                             "is_aircraft_targeted": variable in AIRCRAFT,
-                            "ensemble_mean_rmse": float(np.sqrt(np.mean(error * error))),
-                            "spread": float(np.sqrt(np.mean(sigma * sigma))),
-                            "normalized_spread": float(np.sqrt(np.mean(sigma * sigma)) / std[channel, 0, 0]),
-                            "coverage_05_95": float(np.mean((y >= q05[channel][mask]) & (y <= q95[channel][mask]))),
+                            "ensemble_mean_rmse": weighted_rmse(error, weights),
+                            "spread": weighted_rmse(sigma, weights),
+                            "normalized_spread": weighted_rmse(sigma, weights) / std[channel, 0, 0],
+                            "coverage_05_95": weighted_mean((y >= q05[channel][mask]) & (y <= q95[channel][mask]), weights),
                             "spread_error_correlation": safe_corr(sigma, np.abs(error)),
                             "crps": crps,
                             "fair_crps": fair_crps,
@@ -305,7 +323,7 @@ def write_readme(summary: pd.DataFrame) -> None:
             "",
             f"- Per-entry metrics: `{TABLES / 'metrics_by_timestep_variable_region_protocol.csv'}`",
             f"- Paired entries: `{TABLES / 'paired_metrics_by_timestep_variable_region.csv'}`",
-            f"- Group summary: `{TABLES / 'probabilistic_group_summary.csv'}`",
+            f"- Group summary: `{TABLES / 'area_weighted_probabilistic_group_summary.csv'}`",
             f"- Figure: `{FIGURES / 'probabilistic_summary_2020.png'}`",
         ]
     )
@@ -319,7 +337,7 @@ def main() -> None:
     paired, summary = paired_tables(metrics)
     metrics.to_csv(TABLES / "metrics_by_timestep_variable_region_protocol.csv", index=False)
     paired.to_csv(TABLES / "paired_metrics_by_timestep_variable_region.csv", index=False)
-    summary.to_csv(TABLES / "probabilistic_group_summary.csv", index=False)
+    summary.to_csv(TABLES / "area_weighted_probabilistic_group_summary.csv", index=False)
     plot_summary(summary)
     write_readme(summary)
     manifest = {

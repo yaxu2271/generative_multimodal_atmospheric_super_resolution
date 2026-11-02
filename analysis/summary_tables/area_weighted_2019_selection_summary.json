@@ -1,0 +1,20 @@
+{
+  "metric": "cosine-latitude area-weighted strict-CONUS RMSE",
+  "candidate_count": 9,
+  "development_timesteps": 24,
+  "raw_best_protocol": "joint3x3__a_2019_best__s_aggressive",
+  "tied_protocols": [
+    "joint3x3__a_2019_best__s_aggressive",
+    "joint3x3__a_2019_best__s_compromise",
+    "joint3x3__a_2019_best__s_old_m5",
+    "joint3x3__a_near_tie__s_aggressive",
+    "joint3x3__a_near_tie__s_old_m5",
+    "joint3x3__a_old_a1__s_old_m5"
+  ],
+  "prespecified_center_protocol": "joint3x3__a_2019_best__s_compromise",
+  "selected_protocol_under_existing_tie_rule": "joint3x3__a_2019_best__s_compromise",
+  "original_selected_protocol": "joint3x3__a_2019_best__s_compromise",
+  "selection_unchanged": true,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 1701
+}

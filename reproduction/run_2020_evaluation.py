@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Run the paper's 2020 R, R+A, R+S, or R+A+S configuration."""
+"""Run the paper's 2020 observation-conditioning configurations.
+
+The primary annual configurations are R, R+A, R+S, and R+A+S. Prior, A, S,
+and A+S are provided for the fixed-parameter 24-case removal sensitivity.
+"""
 
 from __future__ import annotations
 
@@ -32,7 +36,15 @@ def require_path(value: Path | None, flag: str, configuration: str) -> Path:
 def register_experiment(
     configuration: str, production, aircraft_data_sources: list[int]
 ) -> str:
-    name = "paper_2020_" + configuration.replace("+", "plus")
+    no_r_names = {
+        "Prior": "prior_no_observations",
+        "A": "aircraft_only",
+        "S": "surface_only",
+        "A+S": "aircraft_surface",
+    }
+    name = no_r_names.get(
+        configuration, "paper_2020_" + configuration.replace("+", "plus")
+    )
     if configuration == "R":
         spec = {
             "use_igra": True,
@@ -40,9 +52,16 @@ def register_experiment(
             "obs_modality": None,
             "description": "Paper reference configuration: IGRA radiosondes only.",
         }
-    elif configuration == "R+A":
+    elif configuration == "Prior":
         spec = {
-            "use_igra": True,
+            "use_igra": False,
+            "obs_mode": "none",
+            "obs_modality": None,
+            "description": "Pretrained prior without observation likelihood factors.",
+        }
+    elif configuration in {"R+A", "A"}:
+        spec = {
+            "use_igra": configuration.startswith("R"),
             "obs_mode": "aircraft_pressure_window_25hpa",
             "obs_modality": "aircraft",
             "obs_space": "aircraft_cell_mean_grid",
@@ -51,22 +70,22 @@ def register_experiment(
             "aircraft_grid_aggregation": "equal",
             "aircraft_pressure_window_name": "within_25_hpa",
             "aircraft_data_sources": aircraft_data_sources,
-            "description": "Paper R+A configuration.",
+            "description": f"Paper {configuration} configuration.",
         }
-    elif configuration == "R+S":
+    elif configuration in {"R+S", "S"}:
         spec = {
-            "use_igra": True,
+            "use_igra": configuration.startswith("R"),
             "obs_mode": "surface_metar",
             "obs_modality": "surface",
             "obs_space": "surface_cell_mean_grid",
             "surface_variables": production.SURFACE_METAR_VARIABLES,
             "surface_spatial_support": "strict_conus",
             "surface_grid_aggregation": "equal",
-            "description": "Paper R+S configuration.",
+            "description": f"Paper {configuration} configuration.",
         }
     else:
         spec = {
-            "use_igra": True,
+            "use_igra": configuration.startswith("R"),
             "obs_mode": "aircraft_pressure_window_25hpa",
             "obs_modality": "aircraft_surface",
             "obs_space": "aircraft_surface_cell_mean_grid",
@@ -78,7 +97,7 @@ def register_experiment(
             "surface_variables": production.SURFACE_METAR_VARIABLES,
             "surface_spatial_support": "strict_conus",
             "surface_grid_aggregation": "equal",
-            "description": "Paper R+A+S configuration.",
+            "description": f"Paper {configuration} configuration.",
         }
     production.EXPERIMENTS[name] = spec
     return name
@@ -87,7 +106,9 @@ def register_experiment(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--configuration", choices=["R", "R+A", "R+S", "R+A+S"], required=True
+        "--configuration",
+        choices=["R", "R+A", "R+S", "R+A+S", "Prior", "A", "S", "A+S"],
+        required=True,
     )
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--hydra-config", type=Path, default=PRIOR_CONFIG_PATH)

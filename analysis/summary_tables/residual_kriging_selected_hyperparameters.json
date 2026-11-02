@@ -1,0 +1,147 @@
+{
+  "selection_year": 2019,
+  "selection_timesteps": [
+    0,
+    56,
+    124,
+    180,
+    236,
+    292,
+    360,
+    416,
+    480,
+    536,
+    604,
+    660,
+    724,
+    780,
+    848,
+    904,
+    972,
+    1028,
+    1092,
+    1148,
+    1216,
+    1272,
+    1336,
+    1392
+  ],
+  "criterion": "lowest mean cosine-latitude area-weighted strict-CONUS RMSE for kriging R+A+S",
+  "kriging_type": "local simple kriging of observation-minus-background residuals",
+  "distance_metric": "great_circle",
+  "earth_radius_km": 6371.0088,
+  "candidate_grid": {
+    "length_km": [
+      200.0,
+      400.0,
+      800.0,
+      1200.0,
+      1600.0,
+      2400.0
+    ],
+    "neighbors": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "nugget": [
+      0.05,
+      0.2,
+      0.5
+    ]
+  },
+  "per_variable": {
+    "10m_u_component_of_wind": {
+      "candidate_id": "L1600_K64_N0.20",
+      "length_km": 1600.0,
+      "neighbors": 64,
+      "nugget": 0.2,
+      "mean_2019_ras_rmse": 1.7894329383805294
+    },
+    "10m_v_component_of_wind": {
+      "candidate_id": "L1200_K64_N0.20",
+      "length_km": 1200.0,
+      "neighbors": 64,
+      "nugget": 0.2,
+      "mean_2019_ras_rmse": 1.926470095918505
+    },
+    "2m_temperature": {
+      "candidate_id": "L0400_K64_N0.50",
+      "length_km": 400.0,
+      "neighbors": 64,
+      "nugget": 0.5,
+      "mean_2019_ras_rmse": 1.5531902934287733
+    },
+    "geopotential_500": {
+      "candidate_id": "L1200_K64_N0.05",
+      "length_km": 1200.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 133.20296148067303
+    },
+    "geopotential_850": {
+      "candidate_id": "L1200_K64_N0.05",
+      "length_km": 1200.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 95.92804523393805
+    },
+    "specific_humidity_500": {
+      "candidate_id": "L0400_K64_N0.20",
+      "length_km": 400.0,
+      "neighbors": 64,
+      "nugget": 0.2,
+      "mean_2019_ras_rmse": 0.000530256180344808
+    },
+    "specific_humidity_850": {
+      "candidate_id": "L0400_K64_N0.05",
+      "length_km": 400.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 0.001431706208904894
+    },
+    "temperature_500": {
+      "candidate_id": "L1600_K64_N0.05",
+      "length_km": 1600.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 0.9354237058862961
+    },
+    "temperature_850": {
+      "candidate_id": "L0800_K64_N0.05",
+      "length_km": 800.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 1.5097910427447703
+    },
+    "u_component_of_wind_500": {
+      "candidate_id": "L1200_K64_N0.05",
+      "length_km": 1200.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 3.2505496746521216
+    },
+    "u_component_of_wind_850": {
+      "candidate_id": "L1200_K64_N0.05",
+      "length_km": 1200.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 2.632033261539173
+    },
+    "v_component_of_wind_500": {
+      "candidate_id": "L1600_K64_N0.05",
+      "length_km": 1600.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 2.9060556105002515
+    },
+    "v_component_of_wind_850": {
+      "candidate_id": "L0800_K64_N0.05",
+      "length_km": 800.0,
+      "neighbors": 64,
+      "nugget": 0.05,
+      "mean_2019_ras_rmse": 2.6734173936982124
+    }
+  }
+}

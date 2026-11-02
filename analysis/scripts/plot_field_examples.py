@@ -108,8 +108,10 @@ def robust_range(fields: list[np.ndarray], symmetric: bool = False) -> tuple[flo
     return float(lo), float(hi)
 
 
-def rmse(a: np.ndarray, b: np.ndarray) -> float:
-    return float(np.sqrt(np.mean((a - b) ** 2)))
+def rmse(a: np.ndarray, b: np.ndarray, lat: np.ndarray) -> float:
+    weights = np.cos(np.deg2rad(lat))[:, None] * np.ones((1, a.shape[1]))
+    squared = np.asarray((a - b) ** 2, dtype=np.float64)
+    return float(np.sqrt(np.sum(weights * squared) / np.sum(weights)))
 
 
 def panel(axis, lon, lat, field, title, cmap, vmin, vmax, polygons, norm=None):
@@ -160,14 +162,14 @@ def make_figure(short: str, spec: dict[str, str], r: np.ndarray, ras: np.ndarray
     )
     error_change = ras_error - r_error
     change_max = max(float(np.percentile(np.abs(error_change), 97.5)), 1e-8)
-    r_rmse = rmse(r_mean, truth)
-    ras_rmse = rmse(ras_mean, truth)
+    r_rmse = rmse(r_mean, truth, lat)
+    ras_rmse = rmse(ras_mean, truth, lat)
     change = 100.0 * (ras_rmse - r_rmse) / r_rmse
 
     figure, axes = plt.subplots(2, 3, figsize=(11.5, 5.8), constrained_layout=True)
     figure.suptitle(
         f"Selected 2020 analysis time over the CONUS domain: {spec['title']}  |  "
-        f"RMSE {r_rmse:.2f} to {ras_rmse:.2f} {spec['unit']} ({change:+.1f}%)",
+        f"Area-weighted RMSE {r_rmse:.2f} to {ras_rmse:.2f} {spec['unit']} ({change:+.1f}%)",
         fontweight="bold",
         fontsize=13,
     )

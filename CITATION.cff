@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software in research, please cite the associated paper below."
-title: "Generative Atmospheric Super-Resolution from Heterogeneous In Situ Observations through Composable Interfaces"
+title: "Generative Atmospheric State Reconstruction from Heterogeneous In Situ Observations through Composable Interfaces"
 type: software
-version: 1.0.6
-date-released: 2026-09-27
+version: 1.1.0
+date-released: 2026-11-01
 license: MIT
 abstract: >-
   Research code and experiment metadata for conditioning a fixed 13-variable
@@ -15,7 +15,7 @@ keywords:
   - diffusion models
   - generative models
   - posterior sampling
-  - super-resolution
+  - state reconstruction
   - weather
 authors:
   - family-names: Xu
@@ -36,7 +36,7 @@ authors:
 repository-code: "https://github.com/ISCLPurdue/generative_multimodal_atmospheric_super_resolution"
 preferred-citation:
   type: article
-  title: "Generative Atmospheric Super-Resolution from Heterogeneous In Situ Observations through Composable Interfaces"
+  title: "Generative Atmospheric State Reconstruction from Heterogeneous In Situ Observations through Composable Interfaces"
   authors:
     - family-names: Xu
       given-names: Yang

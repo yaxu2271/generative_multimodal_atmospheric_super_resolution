@@ -29,7 +29,7 @@ SOURCE_CSV = required_path("ANNUAL_RMSE_TIMESTEP_METRICS_CSV")
 
 SEED = 20260726
 BOOTSTRAP_REPLICATES = 10_000
-BLOCK_DAYS_TO_CASES = {3: 6, 7: 14, 14: 28}
+BLOCK_DAYS_TO_CASES = {3: 6, 7: 14, 14: 28, 21: 42}
 CALENDAR_TIMESTEPS = list(range(0, 1464, 2))
 
 PROTOCOL = "RplusAplusS_selected_2019"
@@ -348,14 +348,9 @@ def run_bootstrap(effect_summary: pd.DataFrame, matrix: np.ndarray, timesteps: n
         series_id=effect_summary["series_id"].to_numpy(dtype=str),
     )
     out = pd.DataFrame(rows)
-    out.to_csv(TABLE_DIR / "moving_block_bootstrap_summary.csv", index=False)
+    out.to_csv(TABLE_DIR / "area_weighted_rmse_block_sensitivity.csv", index=False)
     primary = out[out["block_days"].eq(14)].copy()
-    primary[primary["analysis_scope"].eq("aggregate_set")].to_csv(
-        TABLE_DIR / "annual_rmse_14day_intervals_by_region.csv", index=False
-    )
-    primary[primary["analysis_scope"].eq("per_variable")].to_csv(
-        TABLE_DIR / "annual_rmse_14day_intervals_by_variable.csv", index=False
-    )
+    primary.to_csv(TABLE_DIR / "area_weighted_rmse_14day_intervals.csv", index=False)
     return out
 
 
@@ -461,9 +456,8 @@ def write_readme(bootstrap: pd.DataFrame) -> None:
             "",
             "## Outputs",
             "",
-            f"- Full bootstrap summary: `{TABLE_DIR / 'moving_block_bootstrap_summary.csv'}`",
-            f"- 14-day aggregate table: `{TABLE_DIR / 'annual_rmse_14day_intervals_by_region.csv'}`",
-            f"- 14-day per-variable table: `{TABLE_DIR / 'annual_rmse_14day_intervals_by_variable.csv'}`",
+            f"- Full bootstrap summary: `{TABLE_DIR / 'area_weighted_rmse_block_sensitivity.csv'}`",
+            f"- 14-day aggregate and per-variable table: `{TABLE_DIR / 'area_weighted_rmse_14day_intervals.csv'}`",
             f"- Figures: `{FIG_DIR}`",
             "",
         ]

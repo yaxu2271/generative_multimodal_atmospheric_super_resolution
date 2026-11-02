@@ -81,6 +81,21 @@ class ReleaseConfigurationTests(unittest.TestCase):
                 production.EXPERIMENTS[name]["aircraft_source_filter"], "acars"
             )
 
+    def test_no_r_removal_configurations_disable_radiosondes(self):
+        expected_names = {
+            "Prior": "prior_no_observations",
+            "A": "aircraft_only",
+            "S": "surface_only",
+            "A+S": "aircraft_surface",
+        }
+        for configuration, expected_name in expected_names.items():
+            production = self.production_stub()
+            name = self.annual.register_experiment(
+                configuration, production, self.sources
+            )
+            self.assertEqual(name, expected_name)
+            self.assertFalse(production.EXPERIMENTS[name]["use_igra"])
+
     def test_selected_likelihood_parameters_match_manuscript(self):
         self.assertEqual(
             self.config["selected_parameters"],
@@ -217,18 +232,33 @@ class ReleaseConfigurationTests(unittest.TestCase):
             readme,
         )
 
-    def test_release_citation_uses_final_title_and_arxiv_preferred_citation(self):
+    def test_readme_acknowledges_manuscript_funding_and_resources(self):
+        readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+        normalized_readme = " ".join(readme.split())
+        for required_text in (
+            "Rosen Center for Advanced Computing",
+            "National Energy Research Scientific Computing Center",
+            "Perlmutter",
+            "Integrated Global Radiosonde Archive",
+            "Meteorological Assimilation Data Ingest System",
+            "Copernicus Climate Change Service",
+            "HR0011-26-3-E050",
+            "W911NF-24-1-0315",
+        ):
+            self.assertIn(required_text, normalized_readme)
+
+    def test_release_citation_uses_revised_title_and_arxiv_preferred_citation(self):
         citation = (REPO_ROOT / "CITATION.cff").read_text(encoding="utf-8")
         self.assertIn(
-            "Generative Atmospheric Super-Resolution from Heterogeneous In Situ "
+            "Generative Atmospheric State Reconstruction from Heterogeneous In Situ "
             "Observations through Composable Interfaces",
             citation,
         )
         self.assertIn("preferred-citation:", citation)
         self.assertIn('doi: "10.48550/arXiv.2609.29027"', citation)
         self.assertIn('url: "https://arxiv.org/abs/2609.29027"', citation)
-        self.assertIn("version: 1.0.6", citation)
-        self.assertIn("date-released: 2026-09-27", citation)
+        self.assertIn("version: 1.1.0", citation)
+        self.assertIn("date-released: 2026-11-01", citation)
         self.assertIn("license: MIT", citation)
         license_text = (REPO_ROOT / "LICENSE").read_text(encoding="utf-8")
         self.assertTrue(license_text.startswith("MIT License\n"))
@@ -243,37 +273,37 @@ class ReleaseConfigurationTests(unittest.TestCase):
             self.assertFalse((REPO_ROOT / name).exists())
 
     def test_reported_annual_and_probabilistic_summaries(self):
-        annual = read_csv(SUMMARY_ROOT / "annual_rmse_14day_intervals_by_region.csv")
+        annual = read_csv(SUMMARY_ROOT / "area_weighted_rmse_14day_intervals.csv")
         conus_all = next(
             row
             for row in annual
-            if row["region"] == "strict_conus" and row["variable_set"] == "all13"
+            if row["region"] == "strict_conus" and row["variable_group"] == "all13"
         )
-        self.assertEqual(int(conus_all["n_evaluation_times"]), 723)
+        self.assertEqual(int(conus_all["n_timesteps"]), 723)
         self.assertEqual(int(conus_all["block_days"]), 14)
-        self.assertAlmostEqual(float(conus_all["mean_effect_pct"]), -9.2363, places=3)
-        self.assertLess(float(conus_all["ci95_primary_high_pct"]), 0.0)
-        self.assertFalse(any("paired_t" in column for column in conus_all))
+        self.assertAlmostEqual(float(conus_all["mean_effect_pct"]), -8.9696, places=3)
+        self.assertLess(float(conus_all["ci95_high_pct"]), 0.0)
 
         per_variable = read_csv(
-            SUMMARY_ROOT / "annual_rmse_14day_intervals_by_variable.csv"
+            SUMMARY_ROOT / "area_weighted_rmse_14day_intervals.csv"
         )
         conus_variables = [
-            row for row in per_variable if row["region"] == "strict_conus"
+            row for row in per_variable
+            if row["region"] == "strict_conus" and row["analysis_scope"] == "per_variable"
         ]
         self.assertEqual(len(conus_variables), 13)
         self.assertTrue(
-            all(float(row["ci95_primary_high_pct"]) < 0.0 for row in conus_variables)
+            all(float(row["ci95_high_pct"]) < 0.0 for row in conus_variables)
         )
 
-        crps = read_csv(SUMMARY_ROOT / "crps_14day_intervals.csv")
+        crps = read_csv(SUMMARY_ROOT / "area_weighted_crps_summary.csv")
         conus_crps = next(
             row
             for row in crps
             if row["region"] == "strict_conus"
             and row["evaluation_group"] == "all_13_variables"
         )
-        self.assertAlmostEqual(float(conus_crps["mean_crps_pct_change"]), -9.9762, places=3)
+        self.assertAlmostEqual(float(conus_crps["area_weighted_crps_pct_change"]), -9.6636, places=3)
 
     def test_reported_heldout_summaries(self):
         rows = read_csv(SUMMARY_ROOT / "heldout_family_summary.csv")
@@ -312,36 +342,63 @@ class ReleaseConfigurationTests(unittest.TestCase):
         self.assertFalse((REPO_ROOT / "src/igra_gen/training").exists())
         self.assertFalse((REPO_ROOT / "src/igra_gen/configs/train.yaml").exists())
 
-    def test_composition_summary_schema_and_reported_values(self):
-        rows = read_csv(SUMMARY_ROOT / "composition_summary.csv")
-        self.assertEqual(len(rows), 9)
-        self.assertEqual(
-            set(rows[0]),
-            {
-                "region",
-                "configuration",
-                "n_analysis_times",
-                "all13_mean_rmse_change_pct",
-                "surface3_mean_rmse_change_pct",
-                "aircraft6_mean_rmse_change_pct",
-            },
-        )
+    def test_area_weighted_composition_summary(self):
+        rows = read_csv(SUMMARY_ROOT / "area_weighted_rmse_summary.csv")
+        self.assertEqual(len(rows), 27)
         conus = {
-            row["configuration"]: row
-            for row in rows
-            if row["region"] == "strict_conus"
+            (row["protocol"], row["variable_group"]): row
+            for row in rows if row["region"] == "strict_conus"
         }
-        self.assertEqual(set(conus), {"R+A", "R+S", "R+A+S"})
-        self.assertTrue(all(int(row["n_analysis_times"]) == 723 for row in conus.values()))
+        self.assertEqual({key[0] for key in conus}, {"R+A", "R+S", "R+A+S"})
+        self.assertTrue(all(int(row["n_timesteps"]) == 723 for row in conus.values()))
         self.assertAlmostEqual(
-            float(conus["R+A"]["all13_mean_rmse_change_pct"]), -4.4633, places=3
+            float(conus[("R+A", "all13")]["area_weighted_mean_pct_delta"]), -4.4168, places=3
         )
         self.assertAlmostEqual(
-            float(conus["R+S"]["all13_mean_rmse_change_pct"]), -5.3493, places=3
+            float(conus[("R+S", "all13")]["area_weighted_mean_pct_delta"]), -5.1217, places=3
         )
         self.assertAlmostEqual(
-            float(conus["R+A+S"]["all13_mean_rmse_change_pct"]), -9.2363, places=3
+            float(conus[("R+A+S", "all13")]["area_weighted_mean_pct_delta"]), -8.9696, places=3
         )
+
+    def test_revision_specific_reference_and_sensitivity_outputs(self):
+        selection = json.loads(
+            (SUMMARY_ROOT / "area_weighted_2019_selection_summary.json").read_text()
+        )
+        self.assertTrue(selection["selection_unchanged"])
+        self.assertEqual(selection["development_timesteps"], 24)
+        kriging = json.loads(
+            (SUMMARY_ROOT / "residual_kriging_summary.json").read_text()
+        )
+        self.assertEqual(kriging["n_timesteps"], 723)
+        self.assertAlmostEqual(
+            kriging["mean_kriging_R_to_RAS_pct_equal_variable_time"],
+            -5.8349,
+            places=3,
+        )
+        self.assertAlmostEqual(
+            kriging["mean_diffusion_RAS_vs_kriging_RAS_pct_equal_variable_time"],
+            -15.8406,
+            places=3,
+        )
+        self.assertAlmostEqual(
+            kriging["fraction_variable_times_diffusion_better_than_kriging"],
+            0.8686,
+            places=3,
+        )
+        no_r = read_csv(SUMMARY_ROOT / "no_r_sensitivity_24case.csv")
+        self.assertEqual({int(row["n_timesteps"]) for row in no_r}, {24})
+
+    def test_stale_equal_gridpoint_summaries_are_not_packaged(self):
+        for name in (
+            "annual_rmse_14day_intervals_by_region.csv",
+            "annual_rmse_14day_intervals_by_variable.csv",
+            "composition_summary.csv",
+            "complementarity_summary.csv",
+            "crps_14day_intervals.csv",
+            "probabilistic_group_summary.csv",
+        ):
+            self.assertFalse((SUMMARY_ROOT / name).exists())
 
     def test_removed_ttest_table_is_not_packaged(self):
         self.assertFalse(

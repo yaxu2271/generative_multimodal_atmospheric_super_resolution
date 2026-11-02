@@ -1,7 +1,0 @@
-protocol,region,evaluation_group,n_variables,mean_corrected_spread_skill_ratio,min_corrected_spread_skill_ratio,max_corrected_spread_skill_ratio
-R,strict_conus,all_13_variables,13,0.7013311653871523,0.5771864822655172,0.856240521972598
-R,strict_conus,surface_targeted_variables,3,0.676825258156394,0.6418129868794499,0.7212023674953351
-R,strict_conus,aircraft_targeted_variables,6,0.737416090489922,0.677330622984446,0.856240521972598
-R+A+S,strict_conus,all_13_variables,13,0.7230407941954791,0.6309618385039887,0.8583712582543971
-R+A+S,strict_conus,surface_targeted_variables,3,0.6962228025352513,0.6309618385039887,0.7933140982773387
-R+A+S,strict_conus,aircraft_targeted_variables,6,0.7524634236200948,0.6783777372604359,0.8583712582543971

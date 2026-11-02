@@ -1,0 +1,8 @@
+{
+  "n_timesteps": 723,
+  "n_variables": 13,
+  "mean_kriging_R_to_RAS_pct_equal_variable_time": -5.834879749711213,
+  "mean_diffusion_RAS_vs_kriging_RAS_pct_equal_variable_time": -15.840611794097823,
+  "median_diffusion_RAS_vs_kriging_RAS_pct": -15.672090700685606,
+  "fraction_variable_times_diffusion_better_than_kriging": 0.8686030428769018
+}

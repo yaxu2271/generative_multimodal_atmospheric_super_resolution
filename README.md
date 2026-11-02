@@ -1,4 +1,4 @@
-# Generative Atmospheric Super-Resolution from Heterogeneous In Situ Observations through Composable Interfaces
+# Generative Atmospheric State Reconstruction from Heterogeneous In Situ Observations through Composable Interfaces
 
 [Paper](https://arxiv.org/abs/2609.29027)
 ·
@@ -8,9 +8,10 @@
 · [Citation](#citation)
 
 This repository provides the research code and experiment metadata supporting
-the preprint [*Generative Atmospheric Super-Resolution from Heterogeneous In
-Situ Observations through Composable
-Interfaces*](https://arxiv.org/abs/2609.29027). It implements diffusion posterior
+the revised manuscript *Generative Atmospheric State Reconstruction from
+Heterogeneous In Situ Observations through Composable Interfaces*. The
+[arXiv record](https://arxiv.org/abs/2609.29027) may retain an earlier title
+until the revised version is posted. The code implements diffusion posterior
 sampling with a fixed 13-variable atmospheric diffusion prior and three
 observation sources:
 
@@ -42,26 +43,51 @@ all 723 matched analysis times follows in [Main result](#main-result).
 
 ![Selected 2 m temperature reconstruction and absolute-error changes](docs/figures/selected_t2m_reconstruction.png)
 
-*Selected 2 m temperature example. The CONUS RMSE decreases from 1.94 to
-1.29 K. In panel (f), blue indicates lower absolute error under R+A+S than
+*Selected 2 m temperature example. The area-weighted CONUS RMSE decreases from
+1.87 to 1.26 K. In panel (f), blue indicates lower absolute error under R+A+S than
 under R-only conditioning.*
 
 ![Selected 500 hPa meridional-wind reconstruction and absolute-error changes](docs/figures/selected_v500_reconstruction.png)
 
-*Selected 500 hPa meridional-wind example at the same analysis time. The CONUS
-RMSE decreases from 3.69 to 2.78 m s⁻¹. In panel (f), blue indicates
+*Selected 500 hPa meridional-wind example at the same analysis time. The
+area-weighted CONUS RMSE decreases from 3.79 to 2.87 m s⁻¹. In panel (f), blue indicates
 lower absolute error under R+A+S than under R-only conditioning.*
 
 ## Main result
 
-Across 723 matched analysis times in 2020, R+A+S reduced the mean CONUS RMSE
-across all 13 state variables by **9.24%** and the corresponding CRPS by
-**9.98%** relative to R-only conditioning.
+Across 723 matched analysis times in 2020, R+A+S reduced the mean
+cosine-latitude area-weighted CONUS RMSE across all 13 state variables by
+**8.97%** and the corresponding area-weighted CRPS by **9.66%** relative to
+R-only conditioning.
 
 ![Grouped mean RMSE changes over the CONUS domain](docs/figures/grouped_rmse_changes_conus.png)
 
 *Grouped mean RMSE changes for R+A, R+S, and R+A+S relative to R-only
 conditioning. Negative values indicate lower RMSE.*
+
+## Revision analyses
+
+The major-revision snapshot adds three analyses requested during peer review:
+
+- The annual gridded RMSE, CRPS, spread, and coverage summaries use
+  cosine-latitude area weights. Repeating the 2019 likelihood-parameter audit
+  with the same weighting leaves the selected interface unchanged.
+- A matched non-diffusion reference uses local simple kriging of
+  observation-minus-background residuals, with great-circle distances and
+  per-variable covariance settings selected on 24 prespecified 2019
+  development times. Adding A and S to the kriging R-only reference lowers
+  its mean paired RMSE by **5.83%**. Across the matched 2020 comparisons,
+  diffusion R+A+S has **15.84%** lower mean paired RMSE than kriging R+A+S and
+  is better in **86.86%** of the 9,399 variable-time comparisons. These values
+  describe this specified fixed-background kriging reference, not all
+  objective-analysis or operational data-assimilation systems.
+- A fixed-parameter removal sensitivity evaluates prior-only, A-only, S-only,
+  and A+S conditioning at 24 seasonally distributed 2020 times. The A and S
+  likelihood parameters remain those selected with R present, so this is a
+  removal ablation rather than an optimized comparison among no-R methods.
+
+The corresponding scripts and compact numerical outputs are indexed in
+[`analysis/`](analysis/README.md).
 
 ## Repository map
 
@@ -131,7 +157,7 @@ If this repository supports your research, please cite the associated
 [preprint](https://arxiv.org/abs/2609.29027):
 
 > Yang Xu, Dibyajyoti Chakraborty, Haiwen Guan, Sen Wang, and Romit Maulik.
-> "Generative Atmospheric Super-Resolution from Heterogeneous In Situ
+> "Generative Atmospheric State Reconstruction from Heterogeneous In Situ
 > Observations through Composable Interfaces." arXiv:2609.29027 (2026).
 > <https://doi.org/10.48550/arXiv.2609.29027>
 
@@ -145,8 +171,21 @@ This project is released under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-We acknowledge support from DARPA Award HR0011-26-3-E050 (POC: Yannis
-Kevrekidis).
+Computations were performed using resources provided by Purdue University's
+Rosen Center for Advanced Computing. Training of the pretrained atmospheric
+diffusion model used in this work was performed on Perlmutter using resources
+of the National Energy Research Scientific Computing Center (NERSC), a U.S.
+Department of Energy Office of Science User Facility. The authors acknowledge NOAA for the
+Integrated Global Radiosonde Archive and Meteorological Assimilation Data
+Ingest System observations, and the Copernicus Climate Change Service for the
+ERA5 reanalysis.
+
+This work was supported in part by the Defense Advanced Research Projects
+Agency (DARPA) under Award No. HR0011-26-3-E050 (program point of contact:
+Dr. Yannis Kevrekidis) and the Army Research Office (ARO) Young Investigator
+Award W911NF-24-1-0315 (program point of contact: Dr. Robert Martin). The
+funders played no role in study design, data collection, analysis and
+interpretation of data, or the writing of the manuscript.
 
 ## Authors
 
